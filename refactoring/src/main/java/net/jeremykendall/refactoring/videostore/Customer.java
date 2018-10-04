@@ -6,7 +6,6 @@ import java.util.Vector;
 public class Customer {
     private String _name;
     private Vector _rentals = new Vector();
-    private int frequentRenterPoints = 0;
 
     public Customer(String name) {
         _name = name;
@@ -14,6 +13,7 @@ public class Customer {
 
     public String statement() {
         double totalAmount = 0;
+        int frequentRenterPoints = 0;
         
         Enumeration rentals = _rentals.elements();
         String result = "";
@@ -23,10 +23,10 @@ public class Customer {
             double thisAmount = each.getMovie().amount(each.getDaysRented());
             int priceCode = each.getMovie().getPriceCode();
             
-            addFrequentRenterPoints();
+            frequentRenterPoints = frequentRenterPoints + 1;
             
             // add bonus for a two day new release rental
-            if (priceCode == Movie.NEW_RELEASE && each.getDaysRented() > 1) addFrequentRenterPoints();
+            if (priceCode == Movie.NEW_RELEASE && each.getDaysRented() > 1) frequentRenterPoints = frequentRenterPoints + 1;
 
             //show figures for this rental
             result +=getRentalFigures(each.getMovie().getTitle(), thisAmount);
@@ -44,10 +44,6 @@ public class Customer {
     private String getResult(String name, String result, double total, int points) {
     	return "Rental Record for " + name + "\n" + result + "Amount owed is " + String.valueOf(total) + "\n" + "You earned " + String.valueOf(points) +
                 " frequent renter points";
-    }
-    
-    private void addFrequentRenterPoints() {
-    	frequentRenterPoints ++ ;
     }
     
 
