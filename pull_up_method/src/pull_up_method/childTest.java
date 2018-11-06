@@ -9,7 +9,7 @@ public class childTest {
 	@Test
 	public void testCalc() {
 		
-		child c = new child(0);
+		child c = new child();
 		
 		assertEquals(5,c.calc());
 	}

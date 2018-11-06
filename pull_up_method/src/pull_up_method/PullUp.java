@@ -1,21 +1,10 @@
 package pull_up_method;
 
 public class PullUp {
-
-	protected static int num =4;
-
-	public PullUp(int num) {
-		super();
-		this.num = num;
-	}
 	
-	public static void main(String[] args) {
-		int number = child.calc();
-		System.out.println(number);
-	}
+	// initialize num variable
+	protected int num = 5;
 	
-	public static int calc() {
-		return num+2;
-	}
-
+	// Pull up calc() method here
+	
 }
